@@ -1,4 +1,4 @@
-import Flow from "./Flow";
+import { Flow } from "./Flow";
 
 export type FunctionHandler = (flow: Flow, task: Task) => Promise<void>;
 
@@ -20,18 +20,22 @@ export class Task {
 
 export abstract class TaskHandler {
 
-    abstract before(flow: Flow): Promise<void>;
-    abstract after(flow: Flow): Promise<void>;
+    async create(flow: Flow): Promise<void> { };
+    async init(flow: Flow): Promise<void> { };
+    async before(flow: Flow): Promise<void> { };
+    async after(flow: Flow): Promise<void> { };
+    async destroy(flow: Flow): Promise<void> { };
 
     abstract perform(flow: Flow, task: Task): Promise<void>;
 
 }
 
-export class TaskHandlerDefault implements TaskHandler {
+export class TaskHandlerDefault extends TaskHandler {
 
     performFnc: Function;
 
     constructor(peformFnc: Function) {
+        super()
         this.performFnc = peformFnc;
     }
 

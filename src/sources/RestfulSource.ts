@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
-import Flow from "../process/Flow";
+import { Flow } from "../process/Flow";
 import { Task, TaskHandler } from "../process/Task";
 
 export class Config {
@@ -17,7 +17,7 @@ export class Config {
     }
 }
 
-export default class RestfulSource extends TaskHandler {
+export class RestfulSource extends TaskHandler {
     config: Config;
     axiosInstance: AxiosInstance;
 
